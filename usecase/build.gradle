@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    final MOCKITO_VERSION = '3.12.4'
+    final PAGING_VERSION = "3.1.0"
+
+    api project(path: ':data')
+
+    implementation "androidx.core:core-ktx:$kt_extension_version"
+    testImplementation "junit:junit:$junit_version"
+
+    //Koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    testImplementation("org.koin:koin-test:$koin_version") { exclude group: 'org.mockito' }
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
+
+    //Rx Android
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:$PAGING_VERSION"
+    implementation "androidx.paging:paging-rxjava2-ktx:$PAGING_VERSION"
+}

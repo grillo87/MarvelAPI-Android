@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF202020</color>
+    <color name="light_black">#636363</color>
+    <color name="white">#FFFFFF</color>
+    <color name="marvel_red">#D93831</color>
+    <color name="light_marvel_red">#E26560</color>
+</resources>

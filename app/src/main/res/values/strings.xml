@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Marvel API</string>
+    <string name="activity_detail_title">Character Detail</string>
+    <string name="activity_detail_no_description_available">No description provided for this character</string>
+    <string name="character_added_favorites_message">Character was successfully added to favorites!</string>
+    <string name="character_removed_favorites_message">Character was removed from favorites</string>
+    <string name="error_footer_message">It looks like Thanos has won this time!\nPress to bring more Characters</string>
+    <string name="error_layout_message">Mr. Stark, I Don’t Feel So Good.\nYou want to retry?</string>
+    <string name="error_layout_retry_button_message">I can do this all day</string>
+    <string name="error_favorite_update_message">Mr. Stark, I Don’t Feel So Good. Please try again</string>
+    <string name="successful_favorite_character_added">I love you 3000</string>
+    <string name="successful_favorite_character_removed">I don’t wanna go Mr. Stark</string>
+
+</resources>

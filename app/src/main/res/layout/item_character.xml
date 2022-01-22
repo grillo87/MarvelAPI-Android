@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/item_character_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_character_image_height"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_noun_iron_man" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_character_nameholder_height"
+        android:alpha="0.6"
+        android:src="@drawable/character_gradient_nameholder"
+        app:layout_constraintBottom_toBottomOf="@+id/item_character_imageview" />
+
+    <TextView
+        android:id="@+id/item_character_name"
+        style="@style/Character.Item.Textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/item_character_name_margin_end"
+        android:layout_marginBottom="@dimen/item_character_name_margin_bottom"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Iron Man" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

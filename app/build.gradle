@@ -1,0 +1,88 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.josegrillo.marvelapi"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    final JUNIT_EXTENSION_VERSION = '1.1.3'
+    final JUNIT_RUNNER_VERSION = '1.4.0'
+    final JUNIT_RULER_VERSION = '1.4.0'
+    final CONSTRAINT_LAYOUT_VERSION = '2.1.3'
+    final APP_COMPACT_VERSION = '1.4.1'
+    final MATERIAL_VERSION = '1.5.0'
+    final MOCKITO_VERSION = '3.12.4'
+    final LIFECYCLE_EXTENSION_VERSION = '1.1.1'
+    final ESPRESSO_VERSION = '3.4.0'
+
+    api project(path: ':usecase')
+
+    implementation "androidx.core:core-ktx:$kt_extension_version"
+    implementation "androidx.appcompat:appcompat:$APP_COMPACT_VERSION"
+    implementation "com.google.android.material:material:$MATERIAL_VERSION"
+    implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    androidTestImplementation "androidx.test:rules:$JUNIT_RULER_VERSION"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$ESPRESSO_VERSION"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXTENSION_VERSION"
+    androidTestImplementation "androidx.test:runner:$JUNIT_RUNNER_VERSION"
+
+    // Koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    testImplementation("org.koin:koin-test:$koin_version") { exclude group: 'org.mockito' }
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
+
+    // Rx Android
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+
+    //Lifecycle Extension
+    implementation "android.arch.lifecycle:reactivestreams:$LIFECYCLE_EXTENSION_VERSION"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
+}
