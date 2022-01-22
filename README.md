@@ -22,14 +22,21 @@ The app uses the following libraries:</br></br>
 
 - <a href="https://insert-koin.io/">Koin</a></br>
 - <a href="https://github.com/ReactiveX/RxAndroid">Rx Android</a></br>
-- <a href="https://github.com/square/retrofit">Retrofit2</a></br></br>
-- <a href="https://github.com/ihsanbal/LoggingInterceptor">LoggingInterceptor - Interceptor for OkHttp3 with pretty logger</a></br></br>
-- <a href="https://github.com/bumptech/glide">Glide</a></br></br>
-- <a href="https://github.com/androidx-releases/Room">Room</a></br></br>
-- <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-overview?hl=es-419">Paging3</a></br></br>
+- <a href="https://github.com/square/retrofit">Retrofit2</a></br>
+- <a href="https://github.com/ihsanbal/LoggingInterceptor">LoggingInterceptor - Interceptor for OkHttp3 with pretty logger</a></br>
+- <a href="https://github.com/bumptech/glide">Glide</a></br>
+- <a href="https://github.com/androidx-releases/Room">Room</a></br>
+- <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-overview?hl=es-419">Paging3</a></br>
 
 <b>Screenshots</b></br></br>
 <table>
+<tr>
+<th>Home</th>
+<th>Detail Character (No favorite selected)</th>
+<th>Detail Character (Favorite selected)</th>
+<th>Error message while scrolling</th>
+<th>Error message on Main and Detail at open</th>
+</tr>
 <tr>
 <td>
 <img src="https://github.com/grillo87/MarvelAPI-Android/blob/master/images/1.png">
