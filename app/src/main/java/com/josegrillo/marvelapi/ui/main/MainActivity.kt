@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.mainActivityCharactersList.adapter =
-            CharacterAdapter(GlideApp.with(this), mainViewModel)
+            CharacterAdapter(GlideApp.with(this), mainViewModel::onCharacterSelected)
 
         mainViewModel.loadData()
         setObservers()

@@ -13,7 +13,7 @@ import com.josegrillo.marvelapi.ui.main.MainViewModel
 
 class CharacterAdapter(
     private val glide: GlideRequests,
-    private val mainViewModel: MainViewModel
+    private val onCharacterSelected: (CharacterVO) -> Unit
 ) :
     PagingDataAdapter<CharacterVO, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack) {
 
@@ -25,7 +25,7 @@ class CharacterAdapter(
                 false
             ),
             glide,
-            mainViewModel::onCharacterSelected
+            onCharacterSelected
         )
     }
 
