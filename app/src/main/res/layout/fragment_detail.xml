@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/header_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/character_detail_fragment_character_image_height"
+                android:scaleType="centerInside"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_noun_iron_man" />
+
+
+            <TextView
+                android:id="@+id/character_name"
+                style="@style/Detail.Character.Name.Textview"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/character_detail_fragment_name_height"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:padding="@dimen/character_detail_fragment_name_padding"
+                app:layout_constraintEnd_toStartOf="@+id/character_favorite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_imageview"
+                tools:text="Iron Man" />
+
+            <ImageView
+                android:id="@+id/character_favorite"
+                android:layout_width="@dimen/character_detail_fragment_favorite_size"
+                android:layout_height="@dimen/character_detail_fragment_favorite_size"
+                android:background="@color/white"
+                android:padding="@dimen/character_detail_fragment_favorite_padding"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@+id/character_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_imageview"
+                tools:src="@drawable/ic_spiderman_unselected" />
+
+            <TextView
+                android:id="@+id/character_description"
+                style="@style/Base.Textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/character_detail_fragment_description_padding"
+                app:layout_constraintTop_toBottomOf="@+id/character_name"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus urna a massa sodales rhoncus. Curabitur et pulvinar urna. Donec nisl orci, consectetur et arcu vel, pretium pellentesque metus. Donec sit amet dignissim urna, sodales iaculis dui. Aenean ac ex iaculis diam commodo volutpat vitae nec ex. Aenean pretium massa in ligula gravida, et tempor lorem porta. Quisque et condimentum nunc, ac dapibus augue. Quisque maximus quam neque, sit amet scelerisque dui convallis et" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/progressbar"
+        layout="@layout/layout_progress"
+        android:layout_width="@dimen/base_loading_size"
+        android:layout_height="@dimen/base_loading_size"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/error_layout"
+        layout="@layout/layout_message_error"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,39 +1,38 @@
 package com.josegrillo.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.rxjava2.flowable
-import com.josegrillo.data.datasource.remote.GetCharacterDetailDataSource
-import com.josegrillo.data.datasource.remote.GetCharacterPagingSource
-import com.josegrillo.data.entity.CharacterDTO
-import io.reactivex.Flowable
-import io.reactivex.Single
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.josegrillo.data.mapper.FavoriteMapper
+import com.josegrillo.data.repository.datasource.local.CharacterLocalDataSource
+import com.josegrillo.data.repository.datasource.remote.CharacterRemoteDataSource
+import com.josegrillo.usecase.entity.Character
+import com.josegrillo.usecase.entity.Result
+import com.josegrillo.usecase.repository.CharactersRepository
+import kotlinx.coroutines.flow.Flow
+
 
 class CharactersRepositoryImpl(
-    private val getCharactersPagingSource: GetCharacterPagingSource,
-    private val getCharacterDetailDataSource: GetCharacterDetailDataSource
-) :
-    CharactersRepository {
+    private val characterRemoteDataSource: CharacterRemoteDataSource,
+    private val characterLocalDataSource: CharacterLocalDataSource,
+    private val favoriteMapper: FavoriteMapper
+) : CharactersRepository {
 
-    @ExperimentalCoroutinesApi
-    override fun getCharacters(): Flowable<PagingData<CharacterDTO>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false,
-                initialLoadSize = 40
-
-            ),
-            pagingSourceFactory = { getCharactersPagingSource }
-        ).flowable
+    override fun getCharacters(): Flow<PagingData<Character>> {
+        return characterRemoteDataSource.getCharacters()
     }
 
-    override fun getCharacterDetail(characterId: Int): Single<CharacterDTO> {
-        return getCharacterDetailDataSource.getCharacterDetail(characterId)
-            .map {
-                return@map it.dataDTO.charactersDTO.firstOrNull()
-            }
+    override suspend fun getCharacterDetail(characterId: Int): Result<Character> {
+        return characterRemoteDataSource.getCharacterDetail(characterId)
+    }
+
+    override suspend fun checkFavoriteCharacter(characterId: Int): Result<Boolean> {
+        return characterLocalDataSource.getCharacterIsFavorite(characterId)
+    }
+
+    override suspend fun insertFavorite(characterId: Int) {
+        characterLocalDataSource.insertCharacterAsFavorite(favoriteMapper.map(characterId))
+    }
+
+    override suspend fun deleteFavorite(characterId: Int) {
+        characterLocalDataSource.removeCharacterFromFavorite(favoriteMapper.map(characterId))
     }
 }

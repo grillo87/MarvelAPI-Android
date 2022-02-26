@@ -4,7 +4,6 @@ import com.josegrillo.data.BuildConfig
 import com.josegrillo.data.utils.encrypt
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind

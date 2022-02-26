@@ -10,7 +10,7 @@ object DataKoinModulesLoader {
                 mapperModule,
                 apiModule,
                 daoModule,
-                dataSourceModule,
+                pagingModule,
                 networkModule,
                 repositoryModule,
                 dbModule,

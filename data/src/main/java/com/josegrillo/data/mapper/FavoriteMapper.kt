@@ -1,8 +1,7 @@
 package com.josegrillo.data.mapper
 
-import com.josegrillo.data.database.favorite.FavoriteDAO
-import com.josegrillo.data.entity.CharacterDTO
+import com.josegrillo.usecase.entity.Favorite
 
 interface FavoriteMapper {
-    fun map(input: CharacterDTO): FavoriteDAO
+    fun map(characterId: Int): Favorite
 }

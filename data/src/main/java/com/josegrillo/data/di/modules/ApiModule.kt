@@ -1,7 +1,7 @@
 package com.josegrillo.data.di.modules
 
 import com.josegrillo.data.BuildConfig
-import com.josegrillo.data.network.MarvelApi
+import com.josegrillo.data.api.MarvelApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit

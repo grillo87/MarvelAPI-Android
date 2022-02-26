@@ -28,17 +28,16 @@ class DetailActivityNavigationTest {
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
-    private val desiredClickActionsIndex = listOf(3, 5)
 
     @Test
     fun detailActivityNavigationTest() {
 
         val recyclerView = onView(
             withId(R.id.main_activity_characters_list)
-        ).perform(WaitForLoadAction())
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(desiredClickActionsIndex[0], click()))
+        ).perform(WaitForLoadAction(5, 5000))
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(5, click()))
 
-        onView(
+        val toolbar = onView(
             allOf(
                 childAtPosition(
                     allOf(
@@ -52,10 +51,11 @@ class DetailActivityNavigationTest {
                 ),
                 isDisplayed()
             )
-        ).perform(click())
+        )
 
-        recyclerView.perform(WaitForLoadAction())
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(desiredClickActionsIndex[1], click()))
+        toolbar.perform(click())
+        recyclerView.perform(WaitForLoadAction(10, 5000))
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(10, click()))
     }
 
     private fun childAtPosition(

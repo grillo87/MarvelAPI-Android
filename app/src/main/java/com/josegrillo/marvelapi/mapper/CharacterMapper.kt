@@ -1,8 +1,8 @@
 package com.josegrillo.marvelapi.mapper
 
 import com.josegrillo.marvelapi.entity.CharacterVO
-import com.josegrillo.usecase.entity.CharacterBO
+import com.josegrillo.usecase.entity.Character
 
 interface CharacterMapper {
-    fun map(input: CharacterBO): CharacterVO
+    fun map(input: Character, isFavorite: Boolean = false): CharacterVO
 }

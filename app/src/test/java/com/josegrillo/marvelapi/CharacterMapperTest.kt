@@ -1,10 +1,9 @@
 package com.josegrillo.marvelapi
 
 import com.josegrillo.data.di.DataKoinModulesLoader
-import com.josegrillo.marvelapi.di.modules.AppKoinModulesLoader
+import com.josegrillo.marvelapi.di.AppKoinModulesLoader
 import com.josegrillo.marvelapi.mapper.CharacterMapper
 import com.josegrillo.usecase.di.UseCaseKoinModulesLoader
-import com.josegrillo.usecase.entity.CharacterBO
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin

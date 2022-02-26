@@ -1,15 +1,17 @@
 package com.josegrillo.marvelapi.mapper
 
 import com.josegrillo.marvelapi.entity.CharacterVO
-import com.josegrillo.usecase.entity.CharacterBO
+import com.josegrillo.usecase.entity.Character
+import com.josegrillo.usecase.utils.makeSecurePath
 
 class CharacterMapperImpl : CharacterMapper {
-    override fun map(input: CharacterBO) =
-        CharacterVO(
+    override fun map(input: Character, isFavorite: Boolean): CharacterVO {
+        return CharacterVO(
             input.id,
             input.name,
             input.description,
-            input.image,
-            input.isFavorite
+            "${input.thumbnail?.path?.makeSecurePath()}.${input.thumbnail?.extension}",
+            isFavorite
         )
+    }
 }

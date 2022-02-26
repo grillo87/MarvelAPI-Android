@@ -19,7 +19,7 @@
     </style>
 
     <style name="Detail.Character.Name.Textview" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">@dimen/activity_detail_character_name_textsize</item>
+        <item name="android:textSize">@dimen/character_detail_fragment_name_textsize</item>
         <item name="android:textStyle">bold</item>
         <item name="android:maxLines">3</item>
         <item name="android:ellipsize">end</item>

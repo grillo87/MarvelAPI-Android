@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/marvel_red"
     android:orientation="vertical"
-    tools:layout_height="@dimen/main_activity_footer_error_height">
+    tools:layout_height="@dimen/character_list_fragment_footer_error_height">
 
     <TextView
         style="@style/Base.Textview"

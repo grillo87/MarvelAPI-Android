@@ -17,8 +17,8 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com:443/v1/public/"'
-        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"PRIVATE_API_KEY"'
-        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"PUBLIC_API_KEY"'
+        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"1eb6f540e3b24126e8d8ec5bee51b034d3be0227"'
+        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"ce70da62eeabb184a86b5c6783e35982"'
     }
 
     buildTypes {
@@ -52,6 +52,8 @@ dependencies {
     final ESPRESSO_VERSION = '3.4.0'
     final JUNIT_RULER_VERSION = '1.4.0'
 
+    api project(path: ':domain')
+
     implementation "androidx.core:core-ktx:$kt_extension_version"
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
@@ -75,7 +77,7 @@ dependencies {
     //Room
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-ktx:$ROOM_KTX_VERSION"
-    implementation "androidx.room:room-rxjava2:$ROOM_RX_VERSION"
+//    implementation "androidx.room:room-coroutines:$ROOM_VERSION"
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
 
     //Paging

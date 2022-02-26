@@ -8,5 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Marvel API"
 include ':app'
-include ':usecase'
+include ':domain'
 include ':data'
