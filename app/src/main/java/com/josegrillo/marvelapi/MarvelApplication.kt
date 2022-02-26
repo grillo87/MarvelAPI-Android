@@ -1,7 +1,7 @@
 package com.josegrillo.marvelapi
 
 import android.app.Application
-import com.josegrillo.data.di.DataKoinModulesLoader
+import com.josegrillo.di.DiKoinModulesLoader
 import com.josegrillo.usecase.di.UseCaseKoinModulesLoader
 import com.josegrillo.marvelapi.di.AppKoinModulesLoader
 import org.koin.android.ext.koin.androidContext
@@ -20,6 +20,6 @@ class MarvelApplication : Application() {
     private fun initKoinModules() {
         AppKoinModulesLoader.initModules()
         UseCaseKoinModulesLoader.initModules()
-        DataKoinModulesLoader.initModules()
+        DiKoinModulesLoader.initModules()
     }
 }

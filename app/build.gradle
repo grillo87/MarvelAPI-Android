@@ -40,8 +40,6 @@ android {
 
 dependencies {
 
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
     final JUNIT_EXTENSION_VERSION = '1.1.3'
     final JUNIT_RUNNER_VERSION = '1.4.0'
     final JUNIT_RULER_VERSION = '1.4.0'
@@ -51,14 +49,18 @@ dependencies {
     final MOCKITO_VERSION = '3.12.4'
     final LIFECYCLE_EXTENSION_VERSION = '1.1.1'
     final ESPRESSO_VERSION = '3.4.0'
+    final NAVIGATION_VERSION = '2.4.1'
 
     api project(path: ':domain')
-    api project(path: ':data')
+    implementation project(path: ':di')
 
     implementation "androidx.core:core-ktx:$kt_extension_version"
     implementation "androidx.appcompat:appcompat:$APP_COMPACT_VERSION"
     implementation "com.google.android.material:material:$MATERIAL_VERSION"
     implementation "androidx.constraintlayout:constraintlayout:$CONSTRAINT_LAYOUT_VERSION"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
+    implementation "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
     androidTestImplementation "androidx.test:rules:$JUNIT_RULER_VERSION"
@@ -75,10 +77,6 @@ dependencies {
     testImplementation("org.koin:koin-test:$koin_version") { exclude group: 'org.mockito' }
     testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
 
-    // Rx Android
-    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
-    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
-
     //Lifecycle Extension
     implementation "android.arch.lifecycle:reactivestreams:$LIFECYCLE_EXTENSION_VERSION"
 
@@ -88,5 +86,4 @@ dependencies {
 
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
 }

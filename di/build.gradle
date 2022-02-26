@@ -32,25 +32,11 @@ android {
 }
 
 dependencies {
-
-    final MOCKITO_VERSION = '3.12.4'
-    final PAGING_VERSION = "3.1.0"
-    final RETROFIT_VERSION = '2.9.0'
-
-    implementation "androidx.core:core-ktx:$kt_extension_version"
-    testImplementation "junit:junit:$junit_version"
+    implementation project(path: ':data')
 
     //Koin
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-android:$koin_version"
+    androidTestImplementation("org.koin:koin-test:$koin_version")
     testImplementation("org.koin:koin-test:$koin_version") { exclude group: 'org.mockito' }
-    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
-
-    //Paging
-    implementation "androidx.paging:paging-runtime-ktx:$PAGING_VERSION"
-    implementation "androidx.paging:paging-rxjava2-ktx:$PAGING_VERSION"
-
-    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
-
-    implementation "androidx.room:room-ktx:$room_version"
 }
