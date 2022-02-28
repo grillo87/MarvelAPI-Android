@@ -17,7 +17,7 @@ class WaitForLoadAction(
     }
 
     override fun getDescription(): String {
-        return "wait up to $timeout milliseconds for the view to have text $desiredPosition"
+        return "wait up to $timeout milliseconds for the view to have position $desiredPosition"
     }
 
     override fun perform(uiController: UiController, view: View) {

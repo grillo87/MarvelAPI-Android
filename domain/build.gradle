@@ -53,4 +53,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
 
     implementation "androidx.room:room-ktx:$room_version"
+
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 }

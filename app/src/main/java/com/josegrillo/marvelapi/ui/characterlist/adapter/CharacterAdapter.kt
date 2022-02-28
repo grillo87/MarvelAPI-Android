@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.josegrillo.marvelapi.R
 import com.josegrillo.marvelapi.databinding.ItemCharacterBinding
 import com.josegrillo.marvelapi.di.modules.GlideRequests
 import com.josegrillo.marvelapi.entity.CharacterVO
@@ -14,7 +12,7 @@ class CharacterAdapter(
     private val glide: GlideRequests,
     private val onCharacterSelected: (CharacterVO) -> Unit
 ) :
-    PagingDataAdapter<CharacterVO, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack) {
+    PagingDataAdapter<CharacterVO, CharacterViewHolder>(DiffUtilCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         return CharacterViewHolder(
@@ -40,25 +38,5 @@ class CharacterAdapter(
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
-    }
-
-    class CharacterViewHolder(
-        private val itemCharacterBinding: ItemCharacterBinding,
-        private val glide: GlideRequests,
-        private val onCharacterSelected: (CharacterVO) -> Unit
-    ) : RecyclerView.ViewHolder(itemCharacterBinding.root) {
-
-        fun bind(item: CharacterVO) {
-            itemCharacterBinding.apply {
-                root.setOnClickListener {
-                    onCharacterSelected(item)
-                }
-                itemCharacterName.text = item.name
-                glide.load(item.image)
-                    .placeholder(R.drawable.ic_noun_iron_man)
-                    .error(R.drawable.ic_noun_venom)
-                    .into(itemCharacterImageview)
-            }
-        }
     }
 }

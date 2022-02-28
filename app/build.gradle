@@ -50,6 +50,7 @@ dependencies {
     final LIFECYCLE_EXTENSION_VERSION = '1.1.1'
     final ESPRESSO_VERSION = '3.4.0'
     final NAVIGATION_VERSION = '2.4.1'
+    final RETROFIT_VERSION = '2.9.0'
 
     api project(path: ':domain')
     implementation project(path: ':di')
@@ -68,6 +69,10 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXTENSION_VERSION"
     androidTestImplementation "androidx.test:runner:$JUNIT_RUNNER_VERSION"
+    androidTestImplementation "androidx.navigation:navigation-testing:$NAVIGATION_VERSION"
+    debugImplementation "androidx.fragment:fragment-testing:1.4.1"
+    androidTestImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
+    testImplementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
 
     // Koin
     implementation "org.koin:koin-core:$koin_version"

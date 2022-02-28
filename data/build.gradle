@@ -17,8 +17,8 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com:443/v1/public/"'
-        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"1eb6f540e3b24126e8d8ec5bee51b034d3be0227"'
-        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"ce70da62eeabb184a86b5c6783e35982"'
+        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"PRIVATE_KEY"'
+        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"PUBLIC_KEY"'
     }
 
     buildTypes {
@@ -48,6 +48,7 @@ dependencies {
     final JUNIT_RUNNER_VERSION = '1.4.0'
     final ESPRESSO_VERSION = '3.4.0'
     final JUNIT_RULER_VERSION = '1.4.0'
+    final MOCKITO_KOTLIN_VERSION = '4.0.0'
 
     api project(path: ':domain')
 
@@ -58,6 +59,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$ESPRESSO_VERSION"
     androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXTENSION_VERSION"
     androidTestImplementation "androidx.test:runner:$JUNIT_RUNNER_VERSION"
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$MOCKITO_KOTLIN_VERSION"
 
     //Koin
     implementation "org.koin:koin-core:$koin_version"

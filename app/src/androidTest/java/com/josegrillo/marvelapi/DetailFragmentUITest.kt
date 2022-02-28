@@ -11,6 +11,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.josegrillo.marvelapi.ui.main.MainActivity
+import com.josegrillo.marvelapi.utils.WaitForLoadAction
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
@@ -19,43 +20,27 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import com.josegrillo.marvelapi.utils.WaitForLoadAction
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class DetailActivityNavigationTest {
+class DetailFragmentUITest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun detailActivityNavigationTest() {
-
+    fun detailFragmentUITest() {
         val recyclerView = onView(
-            withId(R.id.main_activity_characters_list)
+            allOf(
+                withId(R.id.characters_list),
+                childAtPosition(
+                    withClassName(`is`("android.widget.RelativeLayout")),
+                    0
+                )
+            )
         ).perform(WaitForLoadAction(5, 5000))
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(5, click()))
-
-        val toolbar = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.activity_detail_toolbar),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.RelativeLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-
-        toolbar.perform(click())
-        recyclerView.perform(WaitForLoadAction(10, 5000))
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(10, click()))
     }
 
     private fun childAtPosition(

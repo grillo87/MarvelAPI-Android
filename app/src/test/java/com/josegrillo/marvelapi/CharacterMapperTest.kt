@@ -1,15 +1,16 @@
 package com.josegrillo.marvelapi
 
-import com.josegrillo.data.di.DataKoinModulesLoader
+import com.google.gson.Gson
 import com.josegrillo.marvelapi.di.AppKoinModulesLoader
 import com.josegrillo.marvelapi.mapper.CharacterMapper
+import com.josegrillo.usecase.utils.DataReaderUtils.readFileWithoutNewLineFromResources
 import com.josegrillo.usecase.di.UseCaseKoinModulesLoader
+import com.josegrillo.usecase.entity.Character
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.test.AutoCloseKoinTest
 import org.koin.test.inject
-import kotlin.random.Random
 
 class CharacterMapperTest : AutoCloseKoinTest() {
 
@@ -20,34 +21,24 @@ class CharacterMapperTest : AutoCloseKoinTest() {
         startKoin {
             AppKoinModulesLoader.initModules()
             UseCaseKoinModulesLoader.initModules()
-            DataKoinModulesLoader.initModules()
         }
     }
 
     @Test
-    fun mapCharacterBOToVO() {
+    fun mapCharacterToVO() {
         // WHEN
-        val input = generateCharacterBO()
+        val input = Gson().fromJson(
+            readFileWithoutNewLineFromResources("character.json"),
+            Character::class.java
+        )
 
         // THEN
         val output = characterMapper.map(input)
 
         // WHAT
-        assert(input.isFavorite == output.isFavorite)
+        assert(!output.isFavorite)
         assert(input.id == output.id)
         assert(input.description == output.description)
         assert(input.name == output.name)
-        assert(input.image == output.image)
     }
-
-    private fun generateCharacterBO() =
-        CharacterBO(
-            generateRandom(),
-            "Character ${generateRandom()}",
-            "Character with description ${generateRandom()}",
-            "http://marvel${generateRandom()}.jpg",
-
-            )
-
-    private fun generateRandom() = Random.nextInt(0, 100)
 }
