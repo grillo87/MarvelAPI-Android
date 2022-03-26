@@ -39,6 +39,14 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>() {
                 }
             }
         }
+
+        binding.errorView.errorLayoutRetryButton.setOnClickListener {
+            (binding.charactersList.adapter as? CharacterAdapter)?.retry()
+        }
+
+        binding.footerContainer.root.setOnClickListener {
+            (binding.charactersList.adapter as? CharacterAdapter)?.retry()
+        }
     }
 
     override fun setObservers() {

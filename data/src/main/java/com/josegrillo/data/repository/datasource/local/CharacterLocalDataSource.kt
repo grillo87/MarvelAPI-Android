@@ -1,10 +1,9 @@
 package com.josegrillo.data.repository.datasource.local
 
-import com.josegrillo.usecase.entity.Favorite
-import com.josegrillo.usecase.entity.Result
+import com.josegrillo.data.entity.FavoriteDTO
 
 interface CharacterLocalDataSource {
-    suspend fun getCharacterIsFavorite(characterId: Int): Result<Boolean>
-    suspend fun insertCharacterAsFavorite(favorite: Favorite)
-    suspend fun removeCharacterFromFavorite(favorite: Favorite)
+    suspend fun getCharacterIsFavorite(characterId: Int): Boolean
+    suspend fun insertCharacterAsFavorite(favoriteDTO: FavoriteDTO)
+    suspend fun removeCharacterFromFavorite(favoriteDTO: FavoriteDTO)
 }

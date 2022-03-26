@@ -1,7 +1,7 @@
 package com.josegrillo.usecase
 
 import com.google.gson.Gson
-import com.josegrillo.usecase.entity.Character
+import com.josegrillo.usecase.entity.CharacterBO
 import com.josegrillo.usecase.entity.Result
 import com.josegrillo.usecase.repository.CharactersRepository
 import com.josegrillo.usecase.usecase.GetCharacterDetailUseCase
@@ -43,7 +43,7 @@ class GetCharacterDetailUseCaseTest {
 
         val mockCharacter = Gson().fromJson(
             readFileWithoutNewLineFromResources("character.json"),
-            Character::class.java
+            CharacterBO::class.java
         )
 
         runTest {
@@ -66,8 +66,7 @@ class GetCharacterDetailUseCaseTest {
             assert(useCaseResult.data.name == "Test Character")
             assert(useCaseResult.data.description == "Test Description")
             assert(useCaseResult.data.thumbnail != null)
-            assert(useCaseResult.data.thumbnail!!.path == "https://www.google.com/test")
-            assert(useCaseResult.data.thumbnail!!.extension == "jpg")
+            assert(useCaseResult.data.thumbnail == "https://www.google.com/test.jpg")
         }
     }
 }

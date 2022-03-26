@@ -9,8 +9,7 @@ import com.josegrillo.marvelapi.entity.CharacterVO
 import com.josegrillo.marvelapi.mapper.CharacterMapper
 import com.josegrillo.usecase.usecase.GetCharacterDetailUseCase
 import kotlinx.coroutines.Dispatchers
-import com.josegrillo.usecase.entity.Result.Success
-import com.josegrillo.usecase.entity.Result.Failure
+import com.josegrillo.usecase.entity.Result
 import com.josegrillo.usecase.usecase.GetCharacterIsFavoriteUseCase
 import com.josegrillo.usecase.usecase.RemoveCharacterAsFavoriteUseCase
 import com.josegrillo.usecase.usecase.SaveCharacterAsFavoriteUseCase
@@ -32,7 +31,7 @@ class DetailViewModel(
     fun loadCharacterDetail(characterId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = getCharacterDetailUseCase.invoke(characterId)) {
-                is Success -> {
+                is Result.Success -> {
                     _characterData.postValue(
                         characterMapper.map(
                             result.data,
@@ -40,8 +39,9 @@ class DetailViewModel(
                         )
                     )
                 }
-                is Failure -> {
+                is Result.Failure -> {
                     Log.e(tag, "Error Message ${result.exception}")
+                    _errorDisplayer.postValue(result.exception)
                 }
             }
         }
@@ -49,10 +49,10 @@ class DetailViewModel(
 
     private suspend fun getCharacterIsFavorite(characterId: Int): Boolean {
         val isFavoriteResult = getCharacterIsFavoriteUseCase.invoke(characterId)
-        return if (isFavoriteResult is Success) {
+        return if (isFavoriteResult is Result.Success) {
             isFavoriteResult.data
         } else {
-            Log.e(tag, "Error Message ${(isFavoriteResult as Failure).exception}")
+            Log.e(tag, "Error Message ${(isFavoriteResult as Result.Failure).exception}")
             _errorDisplayer.postValue(isFavoriteResult.exception)
             false
         }

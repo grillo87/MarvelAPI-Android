@@ -14,6 +14,7 @@ val repositoryModule = module {
         CharactersRepositoryImpl(
             get(),
             get(),
+            get(),
             get()
         )
     } bind CharactersRepository::class

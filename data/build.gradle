@@ -17,8 +17,8 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         buildConfigField "String", "BASE_URL", '"https://gateway.marvel.com:443/v1/public/"'
-        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"PRIVATE_KEY"'
-        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"PUBLIC_KEY"'
+        buildConfigField "String", "MARVEL_PRIVATE_API_KEY", '"<MARVEL_PRIVATE_API_KEY>"'
+        buildConfigField "String", "MARVEL_PUBLIC_API_KEY", '"<MARVEL_PUBLIC_API_KEY>"'
     }
 
     buildTypes {

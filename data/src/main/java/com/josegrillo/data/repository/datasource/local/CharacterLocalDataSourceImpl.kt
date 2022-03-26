@@ -1,29 +1,28 @@
 package com.josegrillo.data.repository.datasource.local
 
+import android.util.Log
 import com.josegrillo.data.db.FavoriteDAO
-import com.josegrillo.usecase.entity.Favorite
-import com.josegrillo.usecase.entity.Result
+import com.josegrillo.data.entity.FavoriteDTO
 
 class CharacterLocalDataSourceImpl(private val favoriteDAO: FavoriteDAO) :
     CharacterLocalDataSource {
 
-    override suspend fun getCharacterIsFavorite(characterId: Int): Result<Boolean> {
+    private val TAG = CharacterLocalDataSourceImpl::class.java.simpleName
+
+    override suspend fun getCharacterIsFavorite(characterId: Int): Boolean {
         return try {
-            favoriteDAO.getFavoriteById(characterId)?.let {
-                Result.Success(true)
-            } ?: run {
-                Result.Success(false)
-            }
+            favoriteDAO.getFavoriteById(characterId) != null
         } catch (exception: Exception) {
-            Result.Failure(exception)
+            Log.e(TAG, exception.localizedMessage ?: "Character Favorite Error")
+            false
         }
     }
 
-    override suspend fun insertCharacterAsFavorite(favorite: Favorite) {
-        favoriteDAO.insert(favorite)
+    override suspend fun insertCharacterAsFavorite(favoriteDTO: FavoriteDTO) {
+        favoriteDAO.insert(favoriteDTO)
     }
 
-    override suspend fun removeCharacterFromFavorite(favorite: Favorite) {
-        favoriteDAO.delete(favorite)
+    override suspend fun removeCharacterFromFavorite(favoriteDTO: FavoriteDTO) {
+        favoriteDAO.delete(favoriteDTO)
     }
 }

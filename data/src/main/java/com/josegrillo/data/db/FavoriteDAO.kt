@@ -1,17 +1,17 @@
 package com.josegrillo.data.db
 
 import androidx.room.*
-import com.josegrillo.usecase.entity.Favorite
+import com.josegrillo.data.entity.FavoriteDTO
 
 @Dao
 interface FavoriteDAO {
 
-    @Query("SELECT * FROM ${Favorite.TABLE_NAME} WHERE ${Favorite.CHARACTER_ID_COLUMN} = :characterId")
-    suspend fun getFavoriteById(characterId: Int): Favorite?
+    @Query("SELECT * FROM ${FavoriteDTO.TABLE_NAME} WHERE ${FavoriteDTO.CHARACTER_ID_COLUMN} = :characterId")
+    suspend fun getFavoriteById(characterId: Int): FavoriteDTO?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(favorite: Favorite)
+    suspend fun insert(favoriteDTO: FavoriteDTO)
 
     @Delete
-    suspend fun delete(favorite: Favorite)
+    suspend fun delete(favoriteDTO: FavoriteDTO)
 }

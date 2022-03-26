@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import com.josegrillo.usecase.entity.CharacterResult
+import com.josegrillo.data.entity.CharacterResultDTO
 
 interface MarvelApi {
     @GET("characters")
@@ -12,10 +12,10 @@ interface MarvelApi {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = 20,
         @Query("orderBy") orderBy: String = "name"
-    ): Response<CharacterResult>
+    ): Response<CharacterResultDTO>
 
     @GET("characters/{characterId}")
     suspend fun getCharacterDetail(
         @Path("characterId") characterId: Int
-    ): Response<CharacterResult>
+    ): Response<CharacterResultDTO>
 }

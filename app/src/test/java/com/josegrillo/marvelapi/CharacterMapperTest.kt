@@ -3,9 +3,9 @@ package com.josegrillo.marvelapi
 import com.google.gson.Gson
 import com.josegrillo.marvelapi.di.AppKoinModulesLoader
 import com.josegrillo.marvelapi.mapper.CharacterMapper
-import com.josegrillo.usecase.utils.DataReaderUtils.readFileWithoutNewLineFromResources
+import com.josegrillo.marvelapi.utils.DataReaderUtils.readFileWithoutNewLineFromResources
 import com.josegrillo.usecase.di.UseCaseKoinModulesLoader
-import com.josegrillo.usecase.entity.Character
+import com.josegrillo.usecase.entity.CharacterBO
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
@@ -29,7 +29,7 @@ class CharacterMapperTest : AutoCloseKoinTest() {
         // WHEN
         val input = Gson().fromJson(
             readFileWithoutNewLineFromResources("character.json"),
-            Character::class.java
+            CharacterBO::class.java
         )
 
         // THEN
@@ -40,5 +40,6 @@ class CharacterMapperTest : AutoCloseKoinTest() {
         assert(input.id == output.id)
         assert(input.description == output.description)
         assert(input.name == output.name)
+        assert(input.thumbnail == output.image)
     }
 }

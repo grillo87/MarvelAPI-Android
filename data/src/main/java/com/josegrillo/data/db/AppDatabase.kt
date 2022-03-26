@@ -2,11 +2,11 @@ package com.josegrillo.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.josegrillo.usecase.entity.Favorite
+import com.josegrillo.data.entity.FavoriteDTO
 
 @Database(
     entities = [
-        Favorite::class
+        FavoriteDTO::class
     ],
     version = 2,
     exportSchema = false

@@ -1,10 +1,10 @@
-package com.josegrillo.usecase.entity
+package com.josegrillo.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class Data(
+data class DataDTO(
     @SerializedName("results")
-    val characters: List<Character>,
+    val characterDTOS: List<CharacterDTO>,
     @SerializedName("offset")
     val offset: Int,
     @SerializedName("limit")

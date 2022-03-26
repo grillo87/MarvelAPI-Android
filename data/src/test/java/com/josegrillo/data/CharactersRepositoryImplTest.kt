@@ -6,8 +6,9 @@ import com.josegrillo.data.repository.CharactersRepositoryImpl
 import com.josegrillo.data.repository.datasource.local.CharacterLocalDataSource
 import com.josegrillo.data.repository.datasource.remote.CharacterRemoteDataSource
 import com.josegrillo.data.utils.DataUtils.readFileWithoutNewLineFromResources
-import com.josegrillo.usecase.entity.Character
-import com.josegrillo.usecase.entity.Result
+import com.josegrillo.data.entity.CharacterDTO
+import com.josegrillo.data.mapper.CharacterMapper
+import com.josegrillo.usecase.entity.CharacterBO
 import junit.framework.TestCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,6 +21,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.Mockito
+import com.josegrillo.usecase.entity.Result
 
 class CharactersRepositoryImplTest : TestCase() {
 
@@ -27,6 +29,7 @@ class CharactersRepositoryImplTest : TestCase() {
     private val characterRemoteDataSource: CharacterRemoteDataSource = mock()
     private val characterLocalDataSource: CharacterLocalDataSource = mock()
     private val favoriteMapper: FavoriteMapper = mock()
+    private val characterMapper: CharacterMapper = mock()
 
     @ExperimentalCoroutinesApi
     @Before
@@ -47,21 +50,31 @@ class CharactersRepositoryImplTest : TestCase() {
         charactersRepository = CharactersRepositoryImpl(
             characterRemoteDataSource,
             characterLocalDataSource,
-            favoriteMapper
+            favoriteMapper,
+            characterMapper
         )
 
-        val mockCharacter = Gson().fromJson(
-            readFileWithoutNewLineFromResources("character.json"),
-            Character::class.java
+        val mockCharacterDTO = Gson().fromJson(
+            readFileWithoutNewLineFromResources("character_dto.json"),
+            CharacterDTO::class.java
+        )
+
+        val mockCharacterBO = Gson().fromJson(
+            readFileWithoutNewLineFromResources("character_bo.json"),
+            CharacterBO::class.java
         )
 
         runTest {
             Mockito.`when`((characterRemoteDataSource.getCharacterDetail(Mockito.anyInt())))
                 .thenReturn(
-                    Result.Success(
-                        mockCharacter
-                    )
+                    mockCharacterDTO
                 )
+
+            Mockito.`when`((characterMapper.map(mockCharacterDTO)))
+                .thenReturn(
+                    mockCharacterBO
+                )
+
             val characterResult = charactersRepository.getCharacterDetail(Mockito.anyInt())
             assert(characterResult is Result.Success)
             assert((characterResult as Result.Success).data.id == 10)
@@ -69,8 +82,7 @@ class CharactersRepositoryImplTest : TestCase() {
             assert(characterResult.data.name == "Test Character")
             assert(characterResult.data.description == "Test Description")
             assert(characterResult.data.thumbnail != null)
-            assert(characterResult.data.thumbnail!!.path == "https://www.google.com/test")
-            assert(characterResult.data.thumbnail!!.extension == "jpg")
+            assert(characterResult.data.thumbnail == "https://www.google.com/test.jpg")
 
         }
     }

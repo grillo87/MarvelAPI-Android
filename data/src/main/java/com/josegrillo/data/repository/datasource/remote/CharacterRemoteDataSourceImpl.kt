@@ -1,14 +1,13 @@
 package com.josegrillo.data.repository.datasource.remote
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.josegrillo.data.api.MarvelApi
 import com.josegrillo.data.paging.CharacterPagingSource
-import com.josegrillo.usecase.entity.Character
-import com.josegrillo.usecase.entity.Result
-import com.josegrillo.usecase.entity.exception.NoCharacterFoundException
+import com.josegrillo.data.entity.CharacterDTO
 import kotlinx.coroutines.flow.Flow
 
 class CharacterRemoteDataSourceImpl(
@@ -17,8 +16,10 @@ class CharacterRemoteDataSourceImpl(
 ) :
     CharacterRemoteDataSource {
 
+    private val TAG = CharacterRemoteDataSource::class.java.simpleName
+
     @OptIn(ExperimentalPagingApi::class)
-    override fun getCharacters(): Flow<PagingData<Character>> {
+    override fun getCharacters(): Flow<PagingData<CharacterDTO>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -30,17 +31,18 @@ class CharacterRemoteDataSourceImpl(
         ).flow
     }
 
-    override suspend fun getCharacterDetail(characterId: Int): Result<Character> {
+    override suspend fun getCharacterDetail(characterId: Int): CharacterDTO? {
         return try {
             val response = marvelApi.getCharacterDetail(characterId)
-            val character = response.body()?.data?.characters?.firstOrNull()
+            val character = response.body()?.dataDTO?.characterDTOS?.firstOrNull()
             if (response.isSuccessful && character != null) {
-                Result.Success(character)
+                character
             } else {
-                Result.Failure(NoCharacterFoundException())
+                null
             }
         } catch (exception: Exception) {
-            Result.Failure(exception)
+            Log.e(TAG, exception.localizedMessage ?: "Character Detail Error")
+            null
         }
     }
 

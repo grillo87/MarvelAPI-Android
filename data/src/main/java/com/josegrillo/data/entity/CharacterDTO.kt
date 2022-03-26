@@ -1,8 +1,8 @@
-package com.josegrillo.usecase.entity
+package com.josegrillo.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class Character(
+data class CharacterDTO(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
@@ -10,5 +10,5 @@ data class Character(
     @SerializedName("description")
     val description: String?,
     @SerializedName("thumbnail")
-    val thumbnail: Thumbnail?
+    val thumbnailDTO: ThumbnailDTO?
 )

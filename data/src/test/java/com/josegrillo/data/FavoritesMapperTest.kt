@@ -21,7 +21,7 @@ class FavoritesMapperTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun mapFavoriteMapper() {
+    fun testFavoriteMapper() {
         // WHEN
         val input = generateRandomNumber()
 

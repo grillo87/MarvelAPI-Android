@@ -3,7 +3,7 @@
   "name": "Test Character",
   "description": "Test Description",
   "thumbnail": {
-    "path": "https://www.google.com/test",
+    "path": "http://www.google.com/test",
     "extension": "jpg"
   }
 }

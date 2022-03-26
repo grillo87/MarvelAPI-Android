@@ -1,11 +1,10 @@
 package com.josegrillo.data.repository.datasource.remote
 
 import androidx.paging.PagingData
-import com.josegrillo.usecase.entity.Character
-import com.josegrillo.usecase.entity.Result
+import com.josegrillo.data.entity.CharacterDTO
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterRemoteDataSource {
-    fun getCharacters(): Flow<PagingData<Character>>
-    suspend fun getCharacterDetail(characterId: Int): Result<Character>
+    fun getCharacters(): Flow<PagingData<CharacterDTO>>
+    suspend fun getCharacterDetail(characterId: Int): CharacterDTO?
 }

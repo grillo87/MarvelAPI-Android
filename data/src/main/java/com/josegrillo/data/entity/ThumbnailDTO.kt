@@ -1,8 +1,8 @@
-package com.josegrillo.usecase.entity
+package com.josegrillo.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class Thumbnail(
+data class ThumbnailDTO(
     @SerializedName("path")
     val path: String?,
     @SerializedName("extension")

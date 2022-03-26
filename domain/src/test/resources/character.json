@@ -2,8 +2,5 @@
   "id": 10,
   "name": "Test Character",
   "description": "Test Description",
-  "thumbnail": {
-    "path": "https://www.google.com/test",
-    "extension": "jpg"
-  }
+  "thumbnail": "https://www.google.com/test.jpg"
 }
